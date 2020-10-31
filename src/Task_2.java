@@ -85,6 +85,33 @@ public class Task_2 {
         } else {
             System.out.println("Please enter number from the right range");
         }
+        
+        //        Additional Task - Given an array. Find if the element of an array is a scale of 2.
+
+        int[] a = {12, 8, 3, 4, 16, 1};
+        boolean isScale = true;
+
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] % 2 == 0) {
+                while (a[i] >= 2) {
+                    if (a[i] % 2 == 0) {
+                        isScale = true;
+                    } else {
+                        isScale = false;
+                        break;
+                    }
+                    a[i] = a[i] / 2;
+
+                }
+            } else {
+                isScale = false;
+            }
+
+
+            System.out.println(isScale + " ");
+
+
+        }
 
     }
 }
