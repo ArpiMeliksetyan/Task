@@ -8,7 +8,7 @@ public class Task_1 {
         Task_1 task_3 = new Task_1();
         task_3.bubbleSort(array);
 
-        for (int i = 0; i < array.length - 1; i++) {
+        for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }
 
