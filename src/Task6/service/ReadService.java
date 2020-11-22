@@ -14,7 +14,7 @@ class ReadService {
         int lines = (int) count.lines().count();
         count.close();
 
-        String[] s = new String[lines];
+        String[] student = new String[lines];
 
         try {
             File myObj = new File(path);
@@ -22,7 +22,7 @@ class ReadService {
             int i = 0;
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                s[i] = data;
+                student[i] = data;
                 i++;
             }
             myReader.close();
@@ -31,7 +31,7 @@ class ReadService {
             System.out.println("Please write valid path name");
             e.printStackTrace();
         }
-        return s;
+        return student;
 
 
     }

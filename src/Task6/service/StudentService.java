@@ -10,8 +10,8 @@ public class StudentService {
 
     public Student[] createStudent() throws IOException {
 
-        String[] s1 = ReadService.reading();
-        Student[] students = new Student[s1.length];
+        String[] student = ReadService.reading();
+        Student[] students = new Student[student.length];
 
         String firstName;
         String lastName ;
@@ -19,9 +19,9 @@ public class StudentService {
         String gender ;
         double mark;
 
-        for (int i = 0; i < s1.length; i++) {
+        for (int i = 0; i < student.length; i++) {
 
-            String[] x = s1[i].split(",");
+            String[] x = student[i].split(",");
 
             firstName = x[0];
 
