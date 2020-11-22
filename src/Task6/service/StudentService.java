@@ -13,27 +13,12 @@ public class StudentService {
         String[] student = ReadService.reading();
         Student[] students = new Student[student.length];
 
-        String firstName;
-        String lastName ;
-        int year;
-        String gender ;
-        double mark;
 
         for (int i = 0; i < student.length; i++) {
 
             String[] x = student[i].split(",");
 
-            firstName = x[0];
-
-            lastName = x[1];
-
-            year = Integer.parseInt(x[2]);
-
-            gender = x[3];
-
-            mark = Double.parseDouble((x[4]));
-
-            students[i] = new Student(firstName, lastName, year, gender, mark);
+            students[i] = new Student(x[0], x[1], Integer.parseInt(x[2]), x[3], Double.parseDouble(x[4]));
 
         }
         return students;
@@ -45,11 +30,11 @@ public class StudentService {
 
         System.out.println(
                 "firstName='" + students.getFirstName() + '\'' +
-                ", lastName='" + students.getLastName() + '\'' +
-                ", year=" + students.getYear() +
-                ", gender='" + students.getGender() + '\'' +
-                ", mark=" + students.getMark()
-                );
+                        ", lastName='" + students.getLastName() + '\'' +
+                        ", year=" + students.getYear() +
+                        ", gender='" + students.getGender() + '\'' +
+                        ", mark=" + students.getMark()
+        );
     }
 
 
