@@ -1,6 +1,6 @@
 package Task_5.model;
 
-public class Employees implements Holidays {
+public  abstract class  Employees implements Holidays {
 
     private int hours;
     private int experience;
@@ -12,6 +12,7 @@ public class Employees implements Holidays {
     private String LastName;
     private String departmentName;
     private String position;
+
 
     public void working() {
         System.out.println("I work as an" + position);

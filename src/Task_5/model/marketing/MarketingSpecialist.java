@@ -1,21 +1,23 @@
-package Task_5.model;
+package Task_5.model.marketing;
 
-public class MarketingSpecialist extends Employees implements Event,DressCode{
-    private Employees employees;
+import Task_5.model.DressCode;
+import Task_5.model.Employees;
+import Task_5.model.Event;
 
-    public MarketingSpecialist(Employees e) {
-        super();
-        employees = e;
+public abstract class MarketingSpecialist extends Employees implements Event, DressCode {
+
+    public MarketingSpecialist(String id, int hours, int experience, double per_Salary, boolean isCertifed, boolean isFullTime, String firtsName, String lastName, String departmentName, String position) {
+        super(id, hours, experience, per_Salary, isCertifed, isFullTime, firtsName, lastName, departmentName, position);
     }
 
-    public void daysOfHoliday(){
-        int days = employees.getHours() / 38;
+    public void daysOfHoliday() {
+        int days = this.getHours() / 38;
         System.out.println("Days of holiday are: " + days);
     }
 
     public void salaryForHolidays() {
-        int days = employees.getHours() / 35;
-        double salary = days * employees.getPer_Salary() * 1.2 ;
+        int days = this.getHours() / 35;
+        double salary = days * this.getPer_Salary() * 1.2;
         System.out.println("Salary for holiday is: " + salary);
 
     }
@@ -35,13 +37,6 @@ public class MarketingSpecialist extends Employees implements Event,DressCode{
     }
 
     @Override
-    public String toString() {
-        return "MarketingSpecialist{" +
-                "employees=" + employees +
-                '}';
-    }
-
-    @Override
     public void typeOfEvent() {
         System.out.println("Annually we organize exhibition of products");
     }
@@ -50,4 +45,6 @@ public class MarketingSpecialist extends Employees implements Event,DressCode{
     public void dressCode() {
         System.out.println("Our every day look is casual");
     }
+
+
 }
