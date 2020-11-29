@@ -1,7 +1,11 @@
 package Task_5.service.implementation;
 
 import Task_5.model.accountant.Accountant;
+import Task_5.model.exceptions.InvalidParametersException;
 import Task_5.service.AccountantService;
+import Task_5.service.validation.AccountingValidation;
+import Task_5.service.validation.GeneralValidation;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +13,48 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
-public class AccountantServiceImpl implements AccountantService {
+public class AccountingServiceImpl implements AccountantService {
+
+    public Accountant createAccountant() throws InvalidParametersException {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter your id (id should be 9 character)");
+        String id = GeneralValidation.id();
+
+        System.out.println("Please enter your working hours");
+        int hour = GeneralValidation.hour();
+
+        System.out.println("Please enter your experience");
+        int experience = GeneralValidation.experience();
+
+        System.out.println("Please enter your per_Salary");
+        double per_Salary = GeneralValidation.per_Salary();
+
+        System.out.println("Please enter true if you are certified employee, otherwise enter false");
+        boolean isCertified = GeneralValidation.isCertified();
+
+        System.out.println("Please enter true if you are full time employee, otherwise enter false");
+        boolean isFulltime = GeneralValidation.isFulltime();
+
+        System.out.println("Please enter your first name");
+        String firstName = scanner.nextLine();
+
+        System.out.println("Please enter your last name");
+        String lastName = scanner.nextLine();
+
+        System.out.println("Please choose your department number");
+        String department = AccountingValidation.department();
+
+        System.out.println("Please choose your position");
+        String position = AccountingValidation.position();
+
+        System.out.println("Please choose true if you know tax code, otherwise choose false");
+        boolean knowledgeOfTaxCode = AccountingValidation.knoledgeOfTaxCode();
+        Accountant accountant = new Accountant(id, hour, experience, per_Salary, isCertified, isFulltime, firstName, lastName, department, position, knowledgeOfTaxCode);
+        System.out.println(accountant);
+
+        return accountant;
+    }
 
 
     public void printInfo(Accountant accountant) {
@@ -19,9 +64,9 @@ public class AccountantServiceImpl implements AccountantService {
                         ", hours=" + accountant.getHours() +
                         ", experience=" + accountant.getExperience() +
                         ", per_Salary=" + accountant.getPer_Salary() +
-                        ", isCertifed=" + accountant.isCertifed() +
+                        ", isCertified=" + accountant.isCertifed() +
                         ", isFullTime=" + accountant.isFullTime() +
-                        ", firtsName=" + accountant.getFirtsName() +
+                        ", firstName=" + accountant.getFirtsName() +
                         ", LastName=" + accountant.getLastName() +
                         ", departmentName=" + accountant.getDepartmentName() +
                         ", position=" + accountant.getPosition() +
@@ -29,7 +74,7 @@ public class AccountantServiceImpl implements AccountantService {
         );
     }
 
-    public String infoAccountant(Accountant accountant) {
+    private String infoAccountant(Accountant accountant) {
 
         return accountant.getId() + "," +
                 accountant.getHours() + "," +
@@ -55,6 +100,16 @@ public class AccountantServiceImpl implements AccountantService {
         }
     }
 
+    public void write1(Accountant accountant) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter path name");
+//        String path = scanner.nextLine();
+        String path = "C:\\Users\\Arpushik\\Desktop\\A.txt";
+        String s = infoAccountant(accountant) + "\n";
+        Files.write(Paths.get(path), s.getBytes(), StandardOpenOption.APPEND);
+
+    }
+
     public Accountant[] read(String path) throws IOException {
         String[] data = Files.readAllLines(Paths.get(path)).toArray(new String[0]);
         Accountant[] accountants = new Accountant[data.length];
@@ -69,7 +124,7 @@ public class AccountantServiceImpl implements AccountantService {
 
     }
 
-    public void printAllAccountants(Accountant [] accountant) {
+    public void printAllAccountants(Accountant[] accountant) {
         for (Accountant accountant1 : accountant) {
             printInfo(accountant1);
         }
@@ -94,7 +149,7 @@ public class AccountantServiceImpl implements AccountantService {
         }
     }
 
-    public void printAccountantsFullName(Accountant[] accountants) {
+    public void printFinancialAccountantsFullName(Accountant[] accountants) {
         for (int i = 0; i < accountants.length; i++) {
             if (accountants[i].getPosition().equals("Financial accountant")) {
                 System.out.println(accountants[i].getFirtsName() + " " + accountants[i].getLastName());
@@ -124,9 +179,9 @@ public class AccountantServiceImpl implements AccountantService {
     }
 
     public void printAccountantsFullNameSalaryBigger100000(Accountant[] accountants) {
-        for (int i = 0; i < accountants.length; i++) {
-            if (accountants[i].calculateSalary() > 100000) {
-                System.out.println(accountants[i].getFirtsName() + " " + accountants[i].getLastName());
+        for (Accountant accountant : accountants) {
+            if (accountant.calculateSalary() > 100000) {
+                System.out.println(accountant.getFirtsName() + " " + accountant.getLastName());
 
             }
         }

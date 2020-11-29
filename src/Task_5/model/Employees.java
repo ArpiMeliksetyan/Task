@@ -1,6 +1,7 @@
 package Task_5.model;
 
-public  abstract class  Employees implements Holidays {
+
+public abstract class Employees implements Holidays {
 
     private int hours;
     private int experience;
@@ -18,9 +19,6 @@ public  abstract class  Employees implements Holidays {
         System.out.println("I work as an" + position);
     }
 
-    public Employees(){
-
-    }
 
     public Employees(String id, int hours, int experience, double per_Salary, boolean isCertifed, boolean isFullTime, String firtsName, String lastName, String departmentName, String position) {
         this.id = id;
@@ -36,27 +34,21 @@ public  abstract class  Employees implements Holidays {
     }
 
     public String getId() {
-        return id;
+            return id;
     }
 
+
     public void setId(String id) {
-        if (id != null && id.length() == 9) {
-            this.id = id;
-        } else {
-            System.out.println("Please enter valid id");
-        }
+        this.id = id;
     }
+
 
     public int getHours() {
         return hours;
     }
 
     public void setHours(int hours) {
-        if (hours > 0) {
-            this.hours = hours;
-        } else{
-            System.out.println("Something went wrong");
-        }
+        this.hours = hours;
     }
 
     public int getExperience() {

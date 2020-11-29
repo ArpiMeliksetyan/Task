@@ -1,9 +1,13 @@
 package Task_5.service.implementation;
 
+import Task_5.model.exceptions.InvalidParametersException;
 import Task_5.model.marketing.MarketingSpecialist;
 import Task_5.model.marketing.SEO;
 import Task_5.model.marketing.SMM;
 import Task_5.service.MarketingService;
+import Task_5.service.validation.GeneralValidation;
+import Task_5.service.validation.MarketingValidation;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +15,60 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
+import static Task_5.util.Constants.*;
+
 public class MarketingServiceImpl implements MarketingService {
+
+    public MarketingSpecialist createMarketingSpecialist() throws InvalidParametersException {
+
+        MarketingSpecialist marketingSpecialist = null;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter your id");
+        String id = GeneralValidation.id();
+
+        System.out.println("Please enter your working hours");
+        int hour = GeneralValidation.hour();
+
+        System.out.println("Please enter your experience");
+        int experience = GeneralValidation.experience();
+
+        System.out.println("Please enter your per_Salary");
+        double per_Salary = GeneralValidation.per_Salary();
+
+        System.out.println("Please enter true if you are certified employee, otherwise enter false");
+        boolean isCertified = GeneralValidation.isCertified();
+
+        System.out.println("Please enter true if you are full time employee, otherwise enter false");
+        boolean isFulltime = GeneralValidation.isFulltime();
+
+        System.out.println("Please enter your first name");
+        String firstName = scanner.nextLine();
+
+        System.out.println("Please enter your last name");
+        String lastName = scanner.nextLine();
+
+        System.out.println("Please choose your department \n");
+        String department = MarketingValidation.department();
+
+        System.out.println("Choose your position");
+        String position = MarketingValidation.position();
+
+        switch (department) {
+            case MARKETING_SEO:
+                System.out.println("Please enter tools that you know");
+                String tools = MarketingValidation.tools();
+                marketingSpecialist = new SEO(id, hour, experience, per_Salary, isCertified, isFulltime, firstName, lastName, department, position, tools);
+
+            case MARKETING_SMM:
+                System.out.println("Please enter social platforms where you work");
+                String socialPlatform = MarketingValidation.socialPlatform();
+                marketingSpecialist = new SMM(id, hour, experience, per_Salary, isCertified, isFulltime, firstName, lastName, department, position, socialPlatform);
+        }
+        return marketingSpecialist;
+
+    }
+
 
     public void printInfo(MarketingSpecialist marketingSpecialist) {
 
@@ -61,7 +118,7 @@ public class MarketingServiceImpl implements MarketingService {
     }
 
 
-    public String print(MarketingSpecialist marketingSpecialist) {
+    private String print(MarketingSpecialist marketingSpecialist) {
         String[] name = marketingSpecialist.getClass().getName().split("\\.");
 
         if (name[name.length - 1].equals("SEO")) {
@@ -108,8 +165,8 @@ public class MarketingServiceImpl implements MarketingService {
 
     public void printAll(MarketingSpecialist[] marketingSpecialists) {
 
-        for (int i = 0; i < marketingSpecialists.length; i++) {
-            printInfo(marketingSpecialists[i]);
+        for (MarketingSpecialist marketingSpecialist : marketingSpecialists) {
+            printInfo(marketingSpecialist);
         }
     }
 
@@ -121,6 +178,16 @@ public class MarketingServiceImpl implements MarketingService {
             String s = print(marketingSpecialists[i]) + "\n";
             Files.write(Paths.get(path), s.getBytes(), StandardOpenOption.APPEND);
         }
+    }
+
+
+    public void write1(MarketingSpecialist marketingSpecialist) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter path name");
+        String path = scanner.nextLine();
+        String s = print(marketingSpecialist) + "\n";
+        Files.write(Paths.get(path), s.getBytes(), StandardOpenOption.APPEND);
+
     }
 
     public MarketingSpecialist[] read(String path) throws IOException {
@@ -159,16 +226,16 @@ public class MarketingServiceImpl implements MarketingService {
 
     public void comission(MarketingSpecialist[] marketingSpecialists) {
         double comission;
-        for (int i = 0; i < marketingSpecialists.length; i++) {
-            if (marketingSpecialists[i].getPer_Salary() < 4000) {
-                comission = marketingSpecialists[i].getPer_Salary() * 1.5 * 21;
-            } else if (marketingSpecialists[i].getPer_Salary() >= 4000 && marketingSpecialists[i].getPer_Salary() <= 7000) {
-                comission = marketingSpecialists[i].getPer_Salary() * 2 * 21;
+        for (MarketingSpecialist marketingSpecialist : marketingSpecialists) {
+            if (marketingSpecialist.getPer_Salary() < 4000) {
+                comission = marketingSpecialist.getPer_Salary() * 1.5 * 21;
+            } else if (marketingSpecialist.getPer_Salary() >= 4000 && marketingSpecialist.getPer_Salary() <= 7000) {
+                comission = marketingSpecialist.getPer_Salary() * 2 * 21;
             } else {
-                comission = marketingSpecialists[i].getPer_Salary() * 3 * 21;
+                comission = marketingSpecialist.getPer_Salary() * 3 * 21;
             }
 
-            System.out.println(marketingSpecialists[i].getFirtsName() + " " + marketingSpecialists[i].getLastName() + " commision is: " + comission);
+            System.out.println(marketingSpecialist.getFirtsName() + " " + marketingSpecialist.getLastName() + " commision is: " + comission);
         }
 
     }

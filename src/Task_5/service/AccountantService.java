@@ -11,7 +11,7 @@ public interface AccountantService {
 
     void printAccountantsWorkingHoursBigger200(Accountant[] accountants);
 
-    void printAccountantsFullName(Accountant[] accountants);
+    void printFinancialAccountantsFullName(Accountant[] accountants);
 
     void printAccountantSortedByPerSalary(Accountant[] accountants);
 

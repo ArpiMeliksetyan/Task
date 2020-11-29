@@ -1,6 +1,5 @@
 package Task_5.model.marketing;
 
-import Task_5.model.marketing.MarketingSpecialist;
 
 public class SMM extends MarketingSpecialist {
 
@@ -32,7 +31,5 @@ public class SMM extends MarketingSpecialist {
         System.out.println("Creating advertisement in Facebook and Instagram ... ");
 
     }
-
-
 
 }

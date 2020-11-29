@@ -1,9 +1,6 @@
 package Task_5.model.marketing;
 
 import Task_5.model.Gaming;
-import Task_5.model.marketing.MarketingSpecialist;
-
-import java.util.Arrays;
 
 public class SEO extends MarketingSpecialist implements Gaming {
 

@@ -12,11 +12,11 @@ public interface ProgrammerService {
 
     void seniorLevelBackendProgrammer(Programmer[] programmers);
 
-    void certifedBackendProgrammersSortedByExperience(Programmer[] programmers);
+    void certifiedBackendProgrammersSortedByExperience(Programmer[] programmers);
 
     void cSharpLanguage(Programmer[] programmers);
 
-    Programmer MaxWorkingHour(Programmer[] programmers);
+    Programmer maxWorkingHour(Programmer[] programmers);
 
     void projectComplexity(Programmer programmer, int rate, int day, int hour);
 

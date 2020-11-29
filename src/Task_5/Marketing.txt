@@ -1,0 +1,6 @@
+333000777,168,1,3750,false,true,Arev,Sargsyan,SMM department,Junior marketing specialist,Facebook and Instagram
+080808081,140,3,4100,true,false,Arsen,Karapetyan,SMM department,Middle marketing specialist,Twitter
+321123321,210,7,7700,true,true,Gayane,Kocharyan,SMM department,Senior marketing specialist,LinkedIn
+000200001,170,2,5100,true,true,Hakob,Hakobyan,SEO department,Junior marketing specialist,Google Analytics
+666278781,120,5,8000,true,true,Mariam,Barseghyan,SEO department,Middle marketing specialist,Yandex Metrica
+656278981,250,6,12000,true,true,Polo,Ghasabyan,SEO department,Senior marketing specialist,Adsense
