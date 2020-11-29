@@ -18,7 +18,7 @@ public class AccountingServiceImpl implements AccountantService {
     public Accountant createAccountant() throws InvalidParametersException {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Please enter your id (id should be 9 character)");
+        System.out.println("Please enter your 9 character id");
         String id = GeneralValidation.id();
 
         System.out.println("Please enter your working hours");

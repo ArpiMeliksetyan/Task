@@ -26,7 +26,7 @@ public class ProgrammerServiceImpl implements ProgrammerService {
         Programmer programmer = null;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Please enter your id");
+        System.out.println("Please enter your 9 character id");
         String id = GeneralValidation.id();
 
         System.out.println("Please enter your working hours");
