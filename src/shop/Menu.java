@@ -15,7 +15,7 @@ import static shop.util.constants.Constants.INVALID_NUMBER;
 public class Menu {
 
 
-    public static void main(String[] args) throws InvalidParametersException, IOException {
+    public static void main(String[] args)  {
         boolean isUser = UserMenu.userMenu();
         if (isUser) {
             Scanner scanner = new Scanner(System.in);
@@ -33,18 +33,34 @@ public class Menu {
                 int number = scanner.nextInt();
                 switch (number) {
                     case 1:
-                        StaffMenu.staffMenu();
+                        try {
+                            StaffMenu.staffMenu();
+                        } catch (InvalidParametersException e) {
+                            e.printStackTrace();
+                        }
                         break;
 
                     case 2:
-                        ProductsMenu.productsMenu();
+                        try {
+                            ProductsMenu.productsMenu();
+                        } catch (InvalidParametersException e) {
+                            e.printStackTrace();
+                        }
                         break;
 
                     case 3:
-                        CustomersMenu.customerMenu();
+                        try {
+                            CustomersMenu.customerMenu();
+                        } catch (InvalidParametersException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case 4:
-                        ShopMenu.shopMenu();
+                        try {
+                            ShopMenu.shopMenu();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         break;
 
                     case 0:
